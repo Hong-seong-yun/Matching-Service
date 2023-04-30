@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+<style>
+    body{
+      font-size:14px;
+      color:#fff;
+      }
+    .bottom-border {
+        border-bottom: 2px groove #eee;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .navbar-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
+      .nav-item {
+        margin-right: 10px;
+        color: #eee;
+      }
+    .my-paragraph {
+      font-size: 20px;
+      color: white;
+    }
+    .trainerAdd {
+        border: 2px solid black;
+        margin: 0 auto;
+        margin-top: 80px;
+        width: 500px;
+        height: 620px;
+    }
+    label {
+      color: black;
+    }
+    h3 {
+        color: black;
+        text-align:center;
+    }
+</style>
+<body>
+<div class="container-fluid bg-dark fixed-top py-2">
+    <div class="row">
+        <div class="col-md-4">
+            <h4 class="text-light text-uppercase mb-0"><a th:href="@{/home}" class="navbar-brand">DashBoard</a></h4>
+        </div>
+        <div class="col-md-4">
+            <form action="">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search...">
+                    <button type="button" class="btn btn-light">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a sec:authorize="isAnonymous()" th:href="@{/login}" class="nav-link">로그인</a></li>
+                <li class="nav-item"><a sec:authorize="isAnonymous()" th:href="@{/signup}" class="nav-link">회원가입</a></li>
+                <li class="nav-item"><a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="nav-link">로그아웃</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="trainerAdd">
+    <form id="traineradd" enctype="multipart/form-data">
+        <h3>트레이너 등록</h3>
+        <div class="container" style="max-width: 700px">
+            <div class="form-group">
+                <label th:for="inputAddress">성별</label>
+                <input type="text" id="tGender" name="tGender" class="form-control" placeholder="성별을 입력해주세요">
+            </div>
+            <div class="form-group">
+                <label th:for="inputAddress">경력</label>
+                <input type="text" id="tYear" name="tYear" class="form-control" placeholder="경력을 입력해주세요">
+            </div>
+            <div class="form-group">
+                <label th:for="tCareer">이력</label>
+                <textarea cols="150" rows="10" id="tCareer" name="tCareer" class="form-control" placeholder="이력을 입력해주세요"></textarea>
+<!--                <input type="text" id="tCareer" name="tCareer" class="form-control" placeholder="이력을 입력해주세요">-->
+            </div>
+            <div class="form-group">
+                <label th:for="profile">프로필 사진</label>
+                <input id="profile" name="profile" type="file" multiple="multiple"/>
+            </div>
+
+            <div class="form-group">
+<!--                <button class="btn btn-primary" onclick="addTrainer()" style="width:230px">등 록</button>-->
+                <input class="btn btn-primary" type="button" style="width:230px" onclick="addTrainer()" value="등 록"/>
+                <button type="button" class="btn btn-danger" th:onclick="|location.href='@{/home}'|" style="width:230px">취 소</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/js/add.js"></script>
+<script src="/js/bootstrap.js"></script>
+</body>
+</html>
